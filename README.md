@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meyer Elektro – Beispiel-/Übungsprojekt
 
-## Getting Started
+Öffentliche Website für den **fiktiven** Elektrofachbetrieb „Meyer Elektro" (Raum
+Hannover). Übungsprojekt von [Habiko](https://habiko.de) – dient gleichzeitig als
+Referenz-/Portfoliobeispiel. Alle Namen, Kontaktdaten, Projekte und Fotos sind
+Platzhalter bzw. Symbolbilder.
 
-First, run the development server:
+## Technik
+
+- Next.js 16 (App Router), TypeScript, Tailwind CSS v4
+- `next/font` (Sora + Inter), `next/image`
+- framer-motion (Scroll-Animationen), lucide-react (Icons)
+
+## Lokal starten
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+→ http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Skripte
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Befehl | Zweck |
+| --- | --- |
+| `npm run dev` | Entwicklungsserver |
+| `npm run build` | Produktions-Build |
+| `npm run start` | Produktionsserver (nach `build`) |
+| `npm run lint` | ESLint |
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deployt auf **Vercel** (GitHub-Repo verbunden, Auto-Deploy bei jedem Push auf
+`main`). Kein Build-Setup nötig – Vercel erkennt Next.js automatisch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Die Seite ist bewusst auf **noindex** gesetzt (`src/app/robots.ts` und
+`src/app/layout.tsx`), damit der fiktive Betrieb nicht in echten Suchergebnissen
+erscheint. Für einen echten Auftrag dort wieder auf „indexierbar" umstellen.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Offene Punkte
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Kontaktformular (`src/app/api/kontakt/route.ts`) nimmt Anfragen nur entgegen und
+  validiert sie – Versand/Speicherung noch nicht angebunden.
+- Echte Firmen-/Impressumsdaten sind Platzhalter (`src/lib/site.ts`).

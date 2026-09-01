@@ -42,7 +42,10 @@ export const metadata: Metadata = {
     description:
       "Familienbetrieb seit 1978: Elektroinstallation, Notdienst und E-Mobilität in der Region Hannover.",
   },
-  robots: { index: true, follow: true },
+  // Fiktiver Uebungskunde als oeffentliche Demo -> nicht von Suchmaschinen
+  // indexieren lassen (sonst taucht ein erfundener Betrieb in echten
+  // Suchergebnissen auf). Zum Aktivieren spaeter auf { index: true, follow: true }.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
