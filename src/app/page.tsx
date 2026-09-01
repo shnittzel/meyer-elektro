@@ -108,8 +108,9 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <MediaFrame
+              src="/images/hero-elektroinstallation.jpg"
               icon={Zap}
-              alt="Symbolbild: Elektrikerin bei der Arbeit an einer Elektroinstallation"
+              alt="Symbolbild: Elektriker bei der Arbeit an einer Elektroverteilung"
               aspect="aspect-[4/5]"
               priority
             />

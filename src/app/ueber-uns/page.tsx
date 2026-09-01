@@ -84,8 +84,9 @@ export default function UeberUnsPage() {
           </div>
           <Reveal delay={0.1}>
             <MediaFrame
+              src="/images/werkstatt.jpg"
               icon={Users}
-              alt="Symbolbild: Team eines Elektrofachbetriebs vor der Werkstatt"
+              alt="Symbolbild: Werkzeug in einer Handwerkswerkstatt"
               aspect="aspect-[4/3]"
             />
           </Reveal>

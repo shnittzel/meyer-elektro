@@ -15,6 +15,7 @@ export type Project = {
   location: string;
   year: number;
   scope: string; // Kurzfassung fuer die Kachel
+  image: string; // Symbolbild (nach Kategorie)
   situation: string; // Ausgangslage
   solution: string; // Umsetzung
   result: string; // Ergebnis
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     location: "Hannover-Kirchrode",
     year: 2024,
     scope: "Komplette Erneuerung der Elektrik im bewohnten Zustand.",
+    image: "/images/leistung-privatkunden.jpg",
     situation:
       "Die Eigentümer hatten ein Haus aus den 1970er-Jahren übernommen. Die Leitungen waren teils noch mit Stoffummantelung verlegt, es gab zu wenige Steckdosen und keinen Fehlerstromschutz. Ausziehen kam während der Bauzeit nicht in Frage.",
     solution:
@@ -48,6 +50,7 @@ export const projects: Project[] = [
     location: "Langenhagen",
     year: 2023,
     scope: "Erstinstallation inklusive Hallenbeleuchtung und Prüfung.",
+    image: "/images/leistung-gewerbekunden.jpg",
     situation:
       "Ein Logistikbetrieb baute eine zusätzliche Halle und benötigte die komplette Elektrotechnik: Beleuchtung, Kraftstrom für Tore und Ladegeräte, Verteilung und die vorgeschriebene Erstprüfung.",
     solution:
@@ -67,6 +70,7 @@ export const projects: Project[] = [
     location: "Isernhagen",
     year: 2024,
     scope: "Beratung, Netzbetreiber-Anmeldung und Installation.",
+    image: "/images/leistung-e-mobilitaet.jpg",
     situation:
       "Zwei Haushalte in einem Doppelhaus wollten je ein Elektroauto laden, ohne dass bei gleichzeitigem Laden die Hausanschlüsse überlastet werden.",
     solution:
@@ -86,6 +90,7 @@ export const projects: Project[] = [
     location: "Hannover-Südstadt",
     year: 2023,
     scope: "Störungssuche und Wiederherstellung an einem Freitagabend.",
+    image: "/images/leistung-notdienst.jpg",
     situation:
       "In einer Praxis fiel freitags nach Feierabend die halbe Etage aus, darunter der Kühlschrank für Medikamente. Am Montag war voller Praxisbetrieb.",
     solution:

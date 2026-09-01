@@ -98,9 +98,33 @@ export default function ImpressumPage() {
       <h2>Urheberrecht</h2>
       <p>
         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
-        Seiten unterliegen dem deutschen Urheberrecht. Fotos auf dieser Website
-        sind Symbolbilder.
+        Seiten unterliegen dem deutschen Urheberrecht.
       </p>
+
+      <h2>Bildnachweis</h2>
+      <p>
+        Alle Fotos auf dieser Website sind Symbolbilder und stammen von{" "}
+        <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">
+          Pexels
+        </a>{" "}
+        (kostenlose Nutzung nach der{" "}
+        <a
+          href="https://www.pexels.com/license/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Pexels-Lizenz
+        </a>
+        , eine Nennung ist nicht verpflichtend):
+      </p>
+      <ul>
+        <li>Startseite – Fotograf: Pixabay</li>
+        <li>Leistungen „Privatkunden“ – Fotografin: Ksenia Chernaya</li>
+        <li>Leistungen „Gewerbekunden“ – Fotograf: Annas Zakaria</li>
+        <li>Leistungen „Notdienst“ – Fotograf: Fatih Yurtman</li>
+        <li>Leistungen „E-Mobilität“ – Fotografin: Lisa Fotios</li>
+        <li>Über uns / Werkstatt – Fotograf: Tima Miroshnichenko</li>
+      </ul>
     </LegalPage>
   );
 }

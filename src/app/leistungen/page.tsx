@@ -92,6 +92,7 @@ export default function LeistungenPage() {
                 className={imageFirst ? "lg:order-1" : ""}
               >
                 <MediaFrame
+                  src={service.image}
                   icon={Icon}
                   alt={service.imageAlt}
                   aspect="aspect-[4/3]"

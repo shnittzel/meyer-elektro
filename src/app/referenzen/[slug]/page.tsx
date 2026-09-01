@@ -75,6 +75,7 @@ export default async function ProjektPage(
             <div className="space-y-10">
               <Reveal>
                 <MediaFrame
+                  src={project.image}
                   alt={`Symbolbild: ${project.title}`}
                   aspect="aspect-[16/9]"
                 />

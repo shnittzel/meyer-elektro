@@ -33,6 +33,7 @@ export const services: Service[] = [
       "Smart-Home-Lösungen für Licht, Heizung und Beschattung",
       "Prüfung Ihrer Anlage nach einem Kauf oder vor der Vermietung",
     ],
+    image: "/images/leistung-privatkunden.jpg",
     imageAlt: "Symbolbild: Elektroinstallation in einem Wohnhaus",
   },
   {
@@ -48,6 +49,7 @@ export const services: Service[] = [
       "Prüfung ortsfester und ortsveränderlicher Betriebsmittel (DGUV V3)",
       "Beleuchtungskonzepte und Nachrüstung auf LED",
     ],
+    image: "/images/leistung-gewerbekunden.jpg",
     imageAlt: "Symbolbild: Elektroinstallation in einem Gewerbebetrieb",
   },
   {
@@ -63,6 +65,7 @@ export const services: Service[] = [
       "Erste Sicherung der Anlage, dann dauerhafte Reparatur",
       "Klare Auskunft zu Kosten, bevor wir loslegen",
     ],
+    image: "/images/leistung-notdienst.jpg",
     imageAlt: "Symbolbild: Elektriker bei einem Notdiensteinsatz an einem Sicherungskasten",
   },
   {
@@ -78,6 +81,7 @@ export const services: Service[] = [
       "Installation mit Leitungsschutz und FI Typ B",
       "Lastmanagement für mehrere Ladepunkte im Betrieb",
     ],
+    image: "/images/leistung-e-mobilitaet.jpg",
     imageAlt: "Symbolbild: Wallbox-Ladestation an einer Hauswand",
   },
 ];

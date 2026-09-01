@@ -43,6 +43,7 @@ export default function ReferenzenPage() {
                 >
                   <div className="relative">
                     <MediaFrame
+                      src={project.image}
                       alt={`Symbolbild: ${project.title}`}
                       aspect="aspect-[16/10]"
                       className="rounded-none border-0"
