@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { DemoBanner } from "@/components/demo-banner";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CookieBanner } from "@/components/cookie-banner";
@@ -63,6 +64,7 @@ export default function RootLayout({
         >
           Zum Inhalt springen
         </a>
+        <DemoBanner />
         <SiteHeader />
         <main id="inhalt">{children}</main>
         <SiteFooter />
