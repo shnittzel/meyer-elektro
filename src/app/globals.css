@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+  Meyer Elektro – Design-Tokens
+  --------------------------------
+  Farbwelt laut Briefing (CLAUDE-meyer-elektro.md, Abschnitt 4):
+  - Weiss  = dominanter Hintergrund
+  - Gelb   = sparsamer Akzent (Buttons, Icons, Kennzahlen)
+  - Anthrazit = Text, Headlines, Kontrastflaechen
+  Alles hier zentral definiert, damit Farben ueberall gleich sind.
+*/
+
+@theme inline {
+  /* Flaechen / Hintergruende */
+  --color-white: #ffffff;
+  --color-surface: #f4f5f7; /* helles Grau fuer abgesetzte Sektionen */
+  --color-border: #e4e7eb;
+
+  /* Text */
+  --color-ink: #1f2933; /* Headlines + Fliesstext */
+  --color-ink-soft: #52606d; /* sekundaerer Text */
+
+  /* Akzent */
+  --color-accent: #f5b301; /* kraeftiges Bernsteingelb */
+  --color-accent-strong: #cc8f00; /* dunklere Variante fuer Hover / Fokus */
+  --color-accent-tint: #fef6e3; /* sehr helles Gelb fuer Flaechen */
+
+  /* Schriften (werden in layout.tsx via next/font gesetzt) */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-sora);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  /* Sichtbarer Fokusring fuer Tastatur-Navigation (Barrierefreiheit) */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-strong);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Bewegung reduzieren, wenn der Nutzer das im System eingestellt hat */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

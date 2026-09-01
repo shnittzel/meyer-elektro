@@ -1,0 +1,70 @@
+import type { Metadata } from "next";
+import { Sora, Inter } from "next/font/google";
+import "./globals.css";
+import { site } from "@/lib/site";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { CookieBanner } from "@/components/cookie-banner";
+
+// Selbst gehostete Schriften: Sora fuer Ueberschriften, Inter fuer Text.
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Meyer Elektro – Elektrofachbetrieb in Hannover",
+    template: "%s | Meyer Elektro Hannover",
+  },
+  description:
+    "Meyer Elektro: Elektrofachbetrieb aus Hannover, Familienbetrieb seit 1978. Elektroinstallation für Privat- und Gewerbekunden, 24/7-Notdienst und Wallbox-Installation in der Region Hannover.",
+  keywords: [
+    "Elektriker Hannover",
+    "Elektrofachbetrieb Hannover",
+    "Elektro-Notdienst Hannover",
+    "Wallbox Installation Hannover",
+    "Elektroinstallation",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "Meyer Elektro",
+    title: "Meyer Elektro – Elektrofachbetrieb in Hannover",
+    description:
+      "Familienbetrieb seit 1978: Elektroinstallation, Notdienst und E-Mobilität in der Region Hannover.",
+  },
+  robots: { index: true, follow: true },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="de" className={`${sora.variable} ${inter.variable}`}>
+      <body className="min-h-dvh bg-white text-ink antialiased">
+        {/* Sprungmarke fuer Screenreader / Tastatur */}
+        <a
+          href="#inhalt"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:shadow"
+        >
+          Zum Inhalt springen
+        </a>
+        <SiteHeader />
+        <main id="inhalt">{children}</main>
+        <SiteFooter />
+        <CookieBanner />
+      </body>
+    </html>
+  );
+}
