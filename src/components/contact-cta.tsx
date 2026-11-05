@@ -1,91 +1,66 @@
-import { Mail, Phone, Siren } from "lucide-react";
 import { site } from "@/lib/site";
 import { Container } from "@/components/container";
-import { Reveal } from "@/components/reveal";
 import { ButtonLink } from "@/components/button-link";
+import { NotdienstPlate } from "@/components/notdienst-plate";
 
 /*
-  Kontakt-Abschnitt direkt vor dem Footer.
-  Wird auf mehreren Seiten eingebunden. Dunkle Flaeche (Anthrazit),
-  damit Telefon/E-Mail deutlich hervorstechen; Notdienst zusaetzlich
-  in Gelb abgesetzt, weil Kunden im Notfall zuerst danach suchen.
+  Kontakt-Abschnitt direkt vor dem Footer, auf mehreren Seiten eingebunden.
+  Graphit-Flaeche: Telefon und E-Mail stehen gross und klickbar als Zeilen
+  einer Liste, darunter das Notdienst-Schild (Kunden im Notfall suchen
+  zuerst nach der Nummer).
 */
 export function ContactCta({
-  title = "Lassen Sie uns über Ihr Vorhaben sprechen",
-  text = "Ob kurze Frage oder konkrete Anfrage – melden Sie sich. Wir schauen uns Ihr Anliegen an und geben eine ehrliche Einschätzung.",
+  title = "Was steht bei Ihnen an?",
+  text = "Rufen Sie an oder schreiben Sie uns. Sie bekommen eine ehrliche Einschätzung und ein Angebot mit klaren Positionen.",
 }: {
   title?: string;
   text?: string;
 }) {
   return (
     <section className="bg-ink text-white">
-      <Container className="py-16 sm:py-20">
-        <Reveal className="max-w-2xl">
-          <h2 className="text-3xl text-white sm:text-4xl">{title}</h2>
-          <p className="mt-4 text-lg leading-relaxed text-white/70">{text}</p>
-        </Reveal>
-
-        <Reveal delay={0.1} className="mt-10 grid gap-4 sm:grid-cols-2">
-          <a
-            href={site.phone.href}
-            className="group flex items-center gap-4 rounded-xl border border-white/15 bg-white/[0.04] p-5 transition-colors hover:border-white/40"
-          >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent text-ink">
-              <Phone className="h-5 w-5" aria-hidden />
-            </span>
-            <span>
-              <span className="block text-sm text-white/60">Anrufen</span>
-              <span className="block text-lg font-semibold text-white">
-                {site.phone.display}
-              </span>
-            </span>
-          </a>
-
-          <a
-            href={`mailto:${site.email}`}
-            className="group flex items-center gap-4 rounded-xl border border-white/15 bg-white/[0.04] p-5 transition-colors hover:border-white/40"
-          >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent text-ink">
-              <Mail className="h-5 w-5" aria-hidden />
-            </span>
-            <span>
-              <span className="block text-sm text-white/60">E-Mail schreiben</span>
-              <span className="block break-all text-lg font-semibold text-white">
-                {site.email}
-              </span>
-            </span>
-          </a>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <div className="mt-4 flex flex-col gap-4 rounded-xl bg-accent p-5 text-ink sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <Siren className="h-6 w-6 shrink-0" aria-hidden />
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-wide">
-                  Elektro-Notdienst
-                </p>
-                <p className="text-sm text-ink/80">
-                  Rund um die Uhr erreichbar – auch nachts und am Wochenende.
-                </p>
-              </div>
-            </div>
-            <a
-              href={site.emergencyPhone.href}
-              className="shrink-0 text-2xl font-bold tracking-tight text-ink underline-offset-4 hover:underline"
-            >
-              {site.emergencyPhone.display}
-            </a>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.2}>
+      <Container className="grid gap-14 py-20 sm:py-24 lg:grid-cols-12 lg:gap-12">
+        <div className="lg:col-span-5">
+          <h2 className="text-5xl leading-[0.95] text-white sm:text-6xl">
+            {title}
+          </h2>
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-white/75">
+            {text}
+          </p>
           <div className="mt-8">
-            <ButtonLink href="/kontakt" variant="secondary" size="lg">
-              Zum Kontaktformular
+            <ButtonLink href="/kontakt" size="lg">
+              Anfrage schicken
             </ButtonLink>
           </div>
-        </Reveal>
+        </div>
+
+        <div className="lg:col-span-7">
+          <dl className="border-t border-white/25">
+            <div className="grid gap-1 border-b border-white/25 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline">
+              <dt className="text-base text-white/70">Telefon</dt>
+              <dd>
+                <a
+                  href={site.phone.href}
+                  className="font-display text-4xl font-semibold leading-none tabular-nums text-white underline-offset-8 hover:underline focus-visible:underline sm:text-6xl"
+                >
+                  {site.phone.display}
+                </a>
+              </dd>
+            </div>
+            <div className="grid gap-1 border-b border-white/25 py-5 sm:grid-cols-[8rem_1fr] sm:items-baseline">
+              <dt className="text-base text-white/70">E-Mail</dt>
+              <dd>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="break-all font-display text-2xl font-semibold leading-tight text-white underline-offset-8 hover:underline focus-visible:underline sm:text-4xl"
+                >
+                  {site.email}
+                </a>
+              </dd>
+            </div>
+          </dl>
+
+          <NotdienstPlate className="mt-8 max-w-xl" />
+        </div>
       </Container>
     </section>
   );

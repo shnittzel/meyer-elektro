@@ -3,9 +3,9 @@ import type { ComponentProps, ReactNode } from "react";
 
 /*
   Einheitliche Buttons/Links fuer die ganze Seite.
-  - "primary":   gelber Akzent-Button, dunkle Schrift (Haupt-Aktion)
-  - "secondary": weisser Button mit Rahmen (Neben-Aktion)
-  - "ghost":     nur Text mit Pfeil (dezente Aktion, z. B. "Mehr erfahren")
+  - "primary":   Signalgelb mit Graphit-Schrift (Haupt-Aktion)
+  - "secondary": Graphit-Rahmen, beim Ueberfahren gefuellt (Neben-Aktion)
+  - "ghost":     nur Text, unterstrichen beim Ueberfahren
   Fuehrt automatisch das richtige Element: <Link> bei interner href,
   <a> bei tel:/mailto:/externem Link.
 */
@@ -14,20 +14,20 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent text-ink hover:bg-accent-strong focus-visible:outline-accent-strong",
+    "bg-accent text-ink hover:bg-accent-hover focus-visible:outline-ink",
   secondary:
-    "bg-white text-ink border border-border hover:border-ink hover:bg-surface focus-visible:outline-ink",
+    "border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white focus-visible:outline-ink",
   ghost:
-    "text-ink hover:text-accent-strong underline-offset-4 hover:underline px-0",
+    "text-ink underline decoration-accent decoration-2 underline-offset-4 hover:decoration-ink px-0",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-4 py-2 text-sm",
-  lg: "px-6 py-3 text-base",
+  md: "px-4 py-2 text-[15px]",
+  lg: "px-6 py-3.5 text-base",
 };
 
 type Props = {

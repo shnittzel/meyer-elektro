@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
 import { site } from "@/lib/site";
 import { Container } from "@/components/container";
+import { Wordmark } from "@/components/wordmark";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -39,28 +40,28 @@ export function SiteHeader() {
       className={`sticky top-0 z-50 transition-colors duration-200 ${
         scrolled || menuOpen
           ? "border-b border-border bg-white"
-          : "border-b border-transparent bg-white/80 backdrop-blur-sm"
+          : "border-b border-transparent bg-white/90 backdrop-blur-sm"
       }`}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="text-lg font-bold tracking-tight text-ink"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          Meyer Elektro<span className="text-accent">.</span>
+      <Container className="flex h-[4.25rem] items-center justify-between gap-3 md:gap-6">
+        <Link href="/" aria-label="Meyer Elektro, zur Startseite">
+          <Wordmark className="text-[1.65rem]" />
         </Link>
 
         {/* Navigation – Desktop */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Hauptnavigation">
+        <nav
+          className="ml-auto hidden items-center gap-8 md:flex"
+          aria-label="Hauptnavigation"
+        >
           {site.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-sm transition-colors hover:text-ink ${
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={`py-1 text-[15px] font-medium underline decoration-2 underline-offset-[10px] transition-colors ${
                 isActive(item.href)
-                  ? "font-semibold text-ink"
-                  : "font-medium text-ink-soft"
+                  ? "text-ink decoration-accent"
+                  : "text-ink-soft decoration-transparent hover:text-ink hover:decoration-border"
               }`}
             >
               {item.label}
@@ -68,20 +69,33 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        {/* Telefon – Desktop */}
+        {/* Notdienst – Desktop: immer in Reichweite */}
         <a
-          href={site.phone.href}
-          className="hidden items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-accent-strong md:inline-flex"
+          href={site.emergencyPhone.href}
+          className="hidden items-baseline gap-2.5 rounded-md bg-accent px-4 py-2 text-ink transition-colors hover:bg-accent-hover md:inline-flex"
+          aria-label={`Elektro-Notdienst anrufen: ${site.emergencyPhone.display}`}
+        >
+          <span className="text-sm font-semibold">Notdienst</span>
+          <span className="font-display text-xl font-bold leading-none tabular-nums">
+            {site.emergencyPhone.display}
+          </span>
+        </a>
+
+        {/* Notdienst – Mobil: ein Tipp ruft direkt an */}
+        <a
+          href={site.emergencyPhone.href}
+          className="ml-auto inline-flex h-11 items-center gap-2 rounded-md bg-accent px-3.5 text-[15px] font-semibold text-ink md:hidden"
+          aria-label={`Elektro-Notdienst anrufen: ${site.emergencyPhone.display}`}
         >
           <Phone className="h-4 w-4" aria-hidden />
-          {site.phone.display}
+          Notdienst
         </a>
 
         {/* Menue-Schalter – Mobil */}
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-ink md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border-2 border-ink text-ink md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
@@ -93,35 +107,44 @@ export function SiteHeader() {
       {/* Navigation – Mobil */}
       {menuOpen ? (
         <div id="mobile-menu" className="md:hidden">
-          <Container className="flex flex-col gap-1 pb-6 pt-2">
-            {site.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className={`rounded-lg px-3 py-3 text-base ${
-                  isActive(item.href)
-                    ? "bg-surface font-semibold text-ink"
-                    : "font-medium text-ink-soft"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <a
-              href={site.phone.href}
-              onClick={closeMenu}
-              className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-base font-semibold text-ink"
-            >
-              <Phone className="h-4 w-4" aria-hidden />
-              {site.phone.display}
-            </a>
+          <Container className="pb-6 pt-2">
+            <nav aria-label="Hauptnavigation" className="border-t border-border">
+              {site.nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  className={`flex items-center justify-between border-b border-border py-4 font-display text-3xl font-semibold ${
+                    isActive(item.href) ? "text-ink" : "text-ink-soft"
+                  }`}
+                >
+                  {item.label}
+                  {isActive(item.href) ? (
+                    <span aria-hidden className="h-3 w-3 bg-accent" />
+                  ) : null}
+                </Link>
+              ))}
+            </nav>
             <a
               href={site.emergencyPhone.href}
               onClick={closeMenu}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-4 py-3 text-base font-semibold text-ink"
+              className="mt-5 flex items-baseline justify-between gap-3 rounded-md bg-accent px-4 py-3 text-ink"
             >
-              Notdienst: {site.emergencyPhone.display}
+              <span className="text-sm font-semibold">Notdienst</span>
+              <span className="font-display text-2xl font-bold leading-none tabular-nums">
+                {site.emergencyPhone.display}
+              </span>
+            </a>
+            <a
+              href={site.phone.href}
+              onClick={closeMenu}
+              className="mt-3 flex items-baseline justify-between gap-3 rounded-md border-2 border-ink px-4 py-3 text-ink"
+            >
+              <span className="text-sm font-semibold">Zentrale</span>
+              <span className="font-display text-2xl font-bold leading-none tabular-nums">
+                {site.phone.display}
+              </span>
             </a>
           </Container>
         </div>

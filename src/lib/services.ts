@@ -12,6 +12,8 @@ export type Service = {
   icon: LucideIcon;
   title: string;
   tagline: string;
+  /* ein Satz fuer die Uebersicht auf der Startseite */
+  summary: string;
   intro: string;
   benefits: string[];
   /* Bild kommt spaeter (Symbolbild). Solange leer -> gestaltete Platzhalterflaeche. */
@@ -25,6 +27,8 @@ export const services: Service[] = [
     icon: Home,
     title: "Privatkunden",
     tagline: "Vom Lichtschalter bis zum Smart Home",
+    summary:
+      "Neubau, Sanierung, Smart Home – oder einfach die Steckdose, die im Wohnzimmer fehlt.",
     intro:
       "Ob Neubau, Sanierung oder eine einzelne Steckdose an der richtigen Stelle – wir kümmern uns um die Elektrik in Ihrem Zuhause. Sauber, termintreu und verständlich erklärt.",
     benefits: [
@@ -41,6 +45,8 @@ export const services: Service[] = [
     icon: Building2,
     title: "Gewerbekunden",
     tagline: "Elektrik, die Ihren Betrieb am Laufen hält",
+    summary:
+      "Installation, Wartung und die vorgeschriebenen Prüfungen für Werkstatt, Laden und Büro.",
     intro:
       "Für Handwerk, Handel, Büro und Produktion planen und installieren wir Elektroanlagen, die zuverlässig arbeiten – und übernehmen die wiederkehrenden Prüfungen, damit Sie auf der sicheren Seite sind.",
     benefits: [
@@ -57,6 +63,8 @@ export const services: Service[] = [
     icon: Siren,
     title: "Notdienst",
     tagline: "Wenn es nicht warten kann",
+    summary:
+      "Stromausfall, Brandgeruch am Sicherungskasten, Störung am Wochenende: Wir kommen.",
     intro:
       "Stromausfall, ein ausgelöster Fehlerstromschutzschalter oder Brandgeruch an der Verteilung? Unser Notdienst ist rund um die Uhr erreichbar und kommt schnell in die Region Hannover.",
     benefits: [
@@ -73,6 +81,8 @@ export const services: Service[] = [
     icon: PlugZap,
     title: "E-Mobilität",
     tagline: "Die eigene Ladestation, fachgerecht angeschlossen",
+    summary:
+      "Wallbox beraten, anmelden und sicher anschließen – für Zuhause und für den Firmenparkplatz.",
     intro:
       "Wir beraten zur passenden Wallbox, melden sie beim Netzbetreiber an und installieren sie so, dass Auto und Hausanlage sicher zusammenarbeiten – für Privathaushalte wie für Firmenparkplätze.",
     benefits: [

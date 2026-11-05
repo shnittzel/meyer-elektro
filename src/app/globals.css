@@ -4,30 +4,34 @@
   Meyer Elektro – Design-Tokens
   --------------------------------
   Farbwelt laut Briefing (CLAUDE-meyer-elektro.md, Abschnitt 4):
-  - Weiss  = dominanter Hintergrund
-  - Gelb   = sparsamer Akzent (Buttons, Icons, Kennzahlen)
-  - Anthrazit = Text, Headlines, Kontrastflaechen
-  Alles hier zentral definiert, damit Farben ueberall gleich sind.
+  Weiss als Hauptfarbe, Gelb als Akzent, ein dunkler Neutralton.
+
+  Die Werte kommen aus dem Verteilerkasten:
+  - Signalgelb = Warnschild-Gelb. Wird nur als FLAECHE benutzt (Schild,
+    Button, Klemme), nie als Textfarbe auf Weiss – dafuer gibt es Ocker.
+  - Graphit    = Kabelmantel / Typenschild-Schrift.
+  - Lichtgrau  = Gehaeusefarbe von Verteilern (RAL 7035, stark aufgehellt).
 */
 
 @theme inline {
-  /* Flaechen / Hintergruende */
+  /* Flaechen */
   --color-white: #ffffff;
-  --color-surface: #f4f5f7; /* helles Grau fuer abgesetzte Sektionen */
-  --color-border: #e4e7eb;
+  --color-surface: #eef0f0; /* Lichtgrau */
+  --color-border: #d9dcdf;
 
   /* Text */
-  --color-ink: #1f2933; /* Headlines + Fliesstext */
-  --color-ink-soft: #52606d; /* sekundaerer Text */
+  --color-ink: #20242a; /* Graphit: Headlines, Fliesstext, dunkle Flaechen */
+  --color-ink-soft: #555b63; /* sekundaerer Text (Kontrast auf Weiss 6,9:1) */
 
   /* Akzent */
-  --color-accent: #f5b301; /* kraeftiges Bernsteingelb */
-  --color-accent-strong: #cc8f00; /* dunklere Variante fuer Hover / Fokus */
-  --color-accent-tint: #fef6e3; /* sehr helles Gelb fuer Flaechen */
+  --color-accent: #ffc700; /* Signalgelb, nur als Flaeche */
+  --color-accent-hover: #eab000; /* Signalgelb beim Ueberfahren */
+  --color-accent-strong: #8a5d00; /* Ocker: kleine Texte/Icons auf Weiss (5,4:1) */
+  --color-accent-tint: #fff4cc; /* blasses Gelb fuer Hinweisflaechen */
 
   /* Schriften (werden in layout.tsx via next/font gesetzt) */
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-sora);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
 }
 
 @layer base {
@@ -38,6 +42,8 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Barlow faellt kompakt aus – 17 px Basis liest sich angenehmer */
+    font-size: 106.25%;
   }
 
   body {
@@ -51,7 +57,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display), var(--font-sans), sans-serif;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.005em;
     color: var(--color-ink);
     text-wrap: balance;
   }
@@ -69,6 +75,51 @@
   }
 }
 
+/*
+  Der eine Auftritt beim Laden der Startseite:
+  Die Zeilen der Ueberschrift fahren nacheinander hoch, danach springt das
+  Notdienst-Schild ein. Reine CSS-Animation, kein JavaScript noetig.
+*/
+@keyframes hero-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes plate-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-line {
+  display: block;
+  overflow: hidden;
+  /* Platz fuer Ober-/Unterlaengen, damit nichts abgeschnitten wird */
+  padding: 0.06em 0 0.1em;
+  margin: -0.06em 0 -0.1em;
+}
+
+.hero-line > span {
+  display: block;
+  transform: translateY(105%);
+  animation: hero-rise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms + 120ms);
+}
+
+.plate-in {
+  opacity: 0;
+  animation: plate-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+}
+
 /* Bewegung reduzieren, wenn der Nutzer das im System eingestellt hat */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -78,6 +129,7 @@
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }

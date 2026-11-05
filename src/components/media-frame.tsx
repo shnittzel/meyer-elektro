@@ -18,6 +18,7 @@ export function MediaFrame({
   icon: Icon,
   aspect = "aspect-[4/3]",
   priority = false,
+  labelAt = "bottom",
   className = "",
 }: {
   src?: string;
@@ -25,11 +26,13 @@ export function MediaFrame({
   icon?: LucideIcon;
   aspect?: string;
   priority?: boolean;
+  /* Wo "Symbolbild" sitzt – oben, wenn unten etwas ueber das Foto ragt */
+  labelAt?: "top" | "bottom";
   className?: string;
 }) {
   return (
     <div
-      className={`relative ${aspect} w-full overflow-hidden rounded-2xl border border-border bg-surface ${className}`}
+      className={`relative ${aspect} w-full overflow-hidden rounded-md border border-border bg-surface ${className}`}
     >
       {src ? (
         <Image
@@ -62,7 +65,11 @@ export function MediaFrame({
         </div>
       )}
 
-      <span className="absolute bottom-2 right-2 rounded-md bg-ink/75 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+      <span
+        className={`absolute right-2 rounded bg-ink/80 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-sm ${
+          labelAt === "top" ? "top-2" : "bottom-2"
+        }`}
+      >
         Symbolbild
       </span>
     </div>

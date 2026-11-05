@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { Container } from "@/components/container";
+import { Wordmark } from "@/components/wordmark";
 
 const legalLinks = [
   { label: "Impressum", href: "/impressum" },
@@ -16,12 +17,7 @@ export function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Marke */}
           <div>
-            <p
-              className="text-lg font-bold tracking-tight text-ink"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Meyer Elektro<span className="text-accent">.</span>
-            </p>
+            <Wordmark className="text-2xl" />
             <p className="mt-2 text-sm text-ink-soft">{site.tagline}</p>
             <p className="mt-4 max-w-xs text-sm text-ink-soft">
               Familienbetrieb seit {site.foundedYear}. Elektrotechnik für

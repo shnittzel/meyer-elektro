@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Inter } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { DemoBanner } from "@/components/demo-banner";
@@ -7,16 +7,20 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CookieBanner } from "@/components/cookie-banner";
 
-// Selbst gehostete Schriften: Sora fuer Ueberschriften, Inter fuer Text.
-const sora = Sora({
+// Selbst gehostete Schriften. Barlow geht auf die Schilderschrift zurueck
+// (Verwandte der DIN-Schriften auf Typen- und Warnschildern). Die schmale
+// Variante traegt Ueberschriften, Zahlen und die Wortmarke, die normale den Text.
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  variable: "--font-sora",
+  weight: ["500", "600", "700"],
+  variable: "--font-barlow-condensed",
   display: "swap",
 });
 
-const inter = Inter({
+const barlow = Barlow({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
   display: "swap",
 });
 
@@ -55,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="de" className={`${barlowCondensed.variable} ${barlow.variable}`}>
       <body className="min-h-dvh bg-white text-ink antialiased">
         {/* Sprungmarke fuer Screenreader / Tastatur */}
         <a
